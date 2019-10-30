@@ -43,8 +43,8 @@ const App = () => {
   }
 
   const handleRefresh = () => {
-    setMinute(currentMinute => currentMinute = 25)
-    setBreakSession(currentBreakSession => currentBreakSession = 5)
+    setMinute(25)
+    setBreakSession(5)
 
   }
 
