@@ -16,26 +16,17 @@ const useStyles = makeStyles(theme => ({
 
 
 const TimeSetter = (props) => {
-  const [minute, setMinute] = useState(
-    5
-  );
   const classes = useStyles();
   const  {text, size} = props.conf;
 
-  const handleIncrement = () => {
-    setMinute(currentMinute => currentMinute < 60 ? currentMinute + 1 : currentMinute)
-  }
-  const handleDecrement = () => {
-    setMinute(currentMinute => currentMinute > 0 ? currentMinute - 1 : currentMinute)
-  }
 
   return (
     <Grid item xs={size} >
       <Paper className={classes.paper}>{text}
-        <Typography variant="h1" > {minute} </Typography>
+        <Typography variant="h1" > {props.breakSession} </Typography>
 
-        <Icon style={{ fontSize: 50, cursor: 'pointer' }} onClick={handleIncrement}>expand_less</Icon>
-        <Icon style={{ fontSize: 50, cursor: 'pointer'}} onClick={handleDecrement}>expand_more</Icon>
+        <Icon style={{ fontSize: 50, cursor: 'pointer' }} onClick={props.onClickIncrement}>expand_less</Icon>
+        <Icon style={{ fontSize: 50, cursor: 'pointer'}} onClick={props.onClickDecrement}>expand_more</Icon>
 
       </Paper>
     </Grid>

@@ -23,20 +23,29 @@ const App = () => {
   const _session = _data.session;
   const _main = _data.main;
 
-  const [minute, setMinute] = useState(
-    25
-  );
+  const [minute, setMinute] = useState(25);
+  const [breakSession, setBreakSession] = useState(5);
+
   let second = 0;
 
   const handleIncrement = () => {
     setMinute(currentMinute => currentMinute < 60 ? currentMinute + 1 : currentMinute)
   }
   const handleDecrement = () => {
-    setMinute(currentMinute => currentMinute > 0 ? currentMinute - 1 : currentMinute)
+    setMinute(currentMinute => currentMinute > 1 ? currentMinute - 1 : currentMinute)
+  }
+
+  const handleBreakIncrement = () => {
+    setBreakSession(currentBreakSession => currentBreakSession < 60 ? currentBreakSession + 1 : currentBreakSession)
+  }
+  const handleBreakDecrement = () => {
+    setBreakSession(currentBreakSession => currentBreakSession > 1 ? currentBreakSession - 1 : currentBreakSession)
   }
 
   const handleRefresh = () => {
     setMinute(currentMinute => currentMinute = 25)
+    setBreakSession(currentBreakSession => currentBreakSession = 5)
+
   }
 
   return (
@@ -45,7 +54,7 @@ const App = () => {
 
       {/* <Grid container spacing={3} align="center" direction="column" justify="center"> */}
         <Grid container spacing={3}>
-          <Break conf={_break} />
+          <Break conf={_break} breakSession={breakSession} onClickIncrement={handleBreakIncrement} onClickDecrement={handleBreakDecrement}/>
           <Session conf={_session} minute={minute} second={second} onClickIncrement={handleIncrement} onClickDecrement={handleDecrement}/>
         </Grid>
 
