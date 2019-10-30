@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Container, Grid} from '@material-ui/core';
+import {Container, Grid, Typography} from '@material-ui/core';
 import TimeSetter from './components/TimeSetter';
 import Break from './components/Break';
 import Session from './components/Session';
@@ -51,7 +51,7 @@ const App = () => {
   return (
     <div>
       <Container maxWidth="md">
-
+        <Typography variant="h2" align="center"> Pomodoro Clock </Typography>
       {/* <Grid container spacing={3} align="center" direction="column" justify="center"> */}
         <Grid container spacing={3}>
           <Break conf={_break} breakSession={breakSession} onClickIncrement={handleBreakIncrement} onClickDecrement={handleBreakDecrement}/>
