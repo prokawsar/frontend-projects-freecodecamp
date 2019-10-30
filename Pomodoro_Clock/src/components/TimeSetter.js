@@ -27,9 +27,6 @@ const TimeSetter = (props) => {
   const handlePlay = ({minute, second}) => {
 
   }
-  const handleRefresh = (minute, second) => {
-    // setMinute(currentMinute => currentMinute < 60 ? currentMinute + 1 : currentMinute)
-  }
 
   return (
     <Grid item xs={size} >
@@ -38,7 +35,7 @@ const TimeSetter = (props) => {
 
         <Icon style={{ fontSize: 50, cursor: 'pointer' }} onClick={handlePause}>pause</Icon>
         <Icon style={{ fontSize: 50, cursor: 'pointer'}} onClick={handlePlay}>play_arrow</Icon>
-        <Icon style={{ fontSize: 50, cursor: 'pointer'}} onClick={handleRefresh}>refresh</Icon>
+        <Icon style={{ fontSize: 50, cursor: 'pointer'}} onClick={props.onClickRefresh}>refresh</Icon>
 
       </Paper>
     </Grid>

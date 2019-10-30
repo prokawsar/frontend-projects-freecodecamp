@@ -35,6 +35,9 @@ const App = () => {
     setMinute(currentMinute => currentMinute > 0 ? currentMinute - 1 : currentMinute)
   }
 
+  const handleRefresh = () => {
+    setMinute(currentMinute => currentMinute = 25)
+  }
 
   return (
     <div>
@@ -47,7 +50,7 @@ const App = () => {
         </Grid>
 
         <Grid container spacing={3}>
-          <TimeSetter conf={_main} minute={minute} second={second} />
+          <TimeSetter conf={_main} minute={minute} second={second} onClickRefresh={handleRefresh}/>
         </Grid>
       {/* </Grid> */}
       </Container>
