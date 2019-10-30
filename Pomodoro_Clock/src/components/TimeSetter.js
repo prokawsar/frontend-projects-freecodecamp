@@ -16,27 +16,29 @@ const useStyles = makeStyles(theme => ({
 
 
 const TimeSetter = (props) => {
-  const [minute, setMinute] = useState(
-    5
-  );
-  let second = 0;
+
   const classes = useStyles();
   const  {text, size} = props.conf;
+  let {minute, second} = props
 
-  const handleIncrement = () => {
-    setMinute(currentMinute => currentMinute < 60 ? currentMinute + 1 : currentMinute)
+  const handlePause = () => {
+    // setMinute(currentMinute => currentMinute < 60 ? currentMinute + 1 : currentMinute)
   }
-  const handleDecrement = () => {
-    setMinute(currentMinute => currentMinute > 0 ? currentMinute - 1 : currentMinute)
+  const handlePlay = ({minute, second}) => {
+
+  }
+  const handleRefresh = (minute, second) => {
+    // setMinute(currentMinute => currentMinute < 60 ? currentMinute + 1 : currentMinute)
   }
 
   return (
     <Grid item xs={size} >
       <Paper className={classes.paper}>{text}
-        <Typography variant="h1" > {minute}:{second}</Typography>
+        <Typography variant="h1" > {minute}:{('0' + second).slice(-2)}</Typography>
 
-        <Icon style={{ fontSize: 50, cursor: 'pointer' }} onClick={handleDecrement}>arrow_drop_down</Icon>
-        <Icon style={{ fontSize: 50, cursor: 'pointer'}} onClick={handleIncrement}>arrow_drop_up</Icon>
+        <Icon style={{ fontSize: 50, cursor: 'pointer' }} onClick={handlePause}>pause</Icon>
+        <Icon style={{ fontSize: 50, cursor: 'pointer'}} onClick={handlePlay}>play_arrow</Icon>
+        <Icon style={{ fontSize: 50, cursor: 'pointer'}} onClick={handleRefresh}>refresh</Icon>
 
       </Paper>
     </Grid>
