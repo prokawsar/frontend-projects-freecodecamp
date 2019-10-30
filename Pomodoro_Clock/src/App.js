@@ -7,15 +7,15 @@ import Session from './components/Session';
 const App = () => {
   const _data = {
     'break' : {
-      'text': 'Break',
+      'text': 'Break Length',
       'size': 6
     },
     'session': {
-      'text': 'Session',
+      'text': 'Session Length',
       'size': 6
     },
     'main':{
-      'text': 'Start Pomodoro',
+      'text': 'Pomodoro Session',
       'size': 12
     }
   }

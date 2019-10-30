@@ -21,7 +21,7 @@ const TimeSetter = (props) => {
 
   return (
     <Grid item xs={size} >
-      <Paper className={classes.paper}>Session
+      <Paper className={classes.paper}>{text}
         <Typography variant="h1" > {props.minute} </Typography>
 
         <Icon style={{ fontSize: 50, cursor: 'pointer' }} onClick={props.onClickIncrement}>expand_less</Icon>
