@@ -44,6 +44,7 @@ const TimeSetter = (props) => {
   }
 
   const handlePlay = () => {
+    handlePause() // clearing the intervals first
     let intervalID = []
 
     let id = setInterval( () => {
