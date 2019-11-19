@@ -80,12 +80,12 @@ const TimeSetter = (props) => {
   return (
     <Grid item xs={size} >
       <Paper className={classes.paper}>{text}
-        { timer.intervalID.length > 0 ? (
+        {/* { timer.intervalID.length > 0 ? (
             <Typography variant="h1" > {PMinute}:{('0' + PSecond).slice(-2)}</Typography>
-          ) : (
-            <Typography variant="h1" > {PMinute}:{('0' + second).slice(-2)}</Typography>
-          )
-        }
+          ) : ( */}
+            <Typography variant="h1" > {PMinute}:{('0' + PSecond).slice(-2)}</Typography>
+          {/* )
+        } */}
 
         <Icon style={{ fontSize: 50, cursor: 'pointer' }} onClick={handlePause}>pause</Icon>
         <Icon style={{ fontSize: 50, cursor: 'pointer'}} onClick={handlePlay}>play_arrow</Icon>
