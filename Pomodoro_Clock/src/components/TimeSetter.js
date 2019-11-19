@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Grid, Paper, Typography, Icon } from '@material-ui/core';
 
@@ -16,12 +16,21 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const usePrevious = (value) => {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
 
 const TimeSetter = (props) => {
 
   const classes = useStyles();
   const  {text, size} = props.conf;
   let {minute, second} = props
+  const prevTime = usePrevious({minute, second});
+
   const [PMinute, setPMinute] = useState(minute)
   const [PSecond, setPSecond] = useState(second)
   const [timer, setTimer] = useState({
@@ -38,12 +47,12 @@ const TimeSetter = (props) => {
     let intervalID = []
 
     let id = setInterval( () => {
-      setPSecond(currentPSecond => currentPSecond == 0 ? currentPSecond = 59 : currentPSecond - 1)
+      setPSecond(currentPSecond => currentPSecond === 0 ? currentPSecond = 59 : currentPSecond - 1)
     }, 100)
     intervalID.push(id)
 
     id = setInterval( () => {
-      setPMinute(currentPMinute => currentPMinute == 0 ? currentPMinute = 59 : currentPMinute - 1)
+      setPMinute(currentPMinute => currentPMinute === 0 ? currentPMinute = 59 : currentPMinute - 1)
     }, 1000)
     intervalID.push(id)
 
@@ -51,7 +60,20 @@ const TimeSetter = (props) => {
   }
 
   useEffect(() => {
-    // console.log(timer.intervalID.length)
+    // refresh isn't working
+    if(prevTime){
+      if(prevTime.minute < minute){
+        console.log(prevTime.minute)
+        setPSecond(currentPSecond => 0 )
+        setPMinute(currentPMinute => prevTime.minute + 1 )
+      }
+      else if(prevTime.minute > minute){
+        setPSecond(currentPSecond => 0 )
+        setPMinute(currentPMinute => prevTime.minute - 1 )
+      }
+    }
+
+
   });
 
   return (
@@ -60,7 +82,7 @@ const TimeSetter = (props) => {
         { timer.intervalID.length > 0 ? (
             <Typography variant="h1" > {PMinute}:{('0' + PSecond).slice(-2)}</Typography>
           ) : (
-            <Typography variant="h1" > {minute}:{('0' + second).slice(-2)}</Typography>
+            <Typography variant="h1" > {PMinute}:{('0' + second).slice(-2)}</Typography>
           )
         }
 
